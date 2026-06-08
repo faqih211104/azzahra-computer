@@ -22,7 +22,7 @@
             <div class="col-lg-8">
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <form action="{{ route('admin.blog.store') }}" method="POST">
+                        <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <!-- Title -->
@@ -34,9 +34,7 @@
                                     id="title" name="title" value="{{ old('title') }}"
                                     placeholder="Masukkan judul blog" required>
                                 @error('title')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -48,10 +46,26 @@
                                 <input type="date" class="form-control @error('date') is-invalid @enderror"
                                     id="date" name="date" value="{{ old('date', date('Y-m-d')) }}">
                                 @error('date')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+
+                            <!-- Image -->
+                            <div class="mb-3">
+                                <label for="image" class="form-label">
+                                    <i class="bi bi-image"></i> Foto Blog
+                                </label>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                    id="image" name="image" accept="image/*"
+                                    onchange="previewImage(event)">
+                                @error('image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <!-- Preview foto -->
+                                <div class="mt-2" id="preview-container" style="display:none;">
+                                    <img id="preview-image" src="" alt="Preview"
+                                        class="img-thumbnail" style="max-height: 200px;">
+                                </div>
                             </div>
 
                             <!-- Body/Content -->
@@ -59,12 +73,11 @@
                                 <label for="body" class="form-label">
                                     <i class="bi bi-file-text"></i> Isi Blog
                                 </label>
-                                <textarea class="form-control @error('body') is-invalid @enderror" id="body" name="body" rows="10"
+                                <textarea class="form-control @error('body') is-invalid @enderror"
+                                    id="body" name="body" rows="10"
                                     placeholder="Tulis isi blog di sini..." required>{{ old('body') }}</textarea>
                                 @error('body')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -83,5 +96,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview-image').src = e.target.result;
+                    document.getElementById('preview-container').style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 
 @endsection

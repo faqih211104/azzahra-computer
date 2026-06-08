@@ -52,21 +52,21 @@
                     </svg>
                 </button>
                 <div class="mobile-dropdown-content">
-                    <a href="/products">Semua Produk</a>
-                    @foreach ($navCategories as $category)
-                        <a href="/products?category={{ $category }}">{{ ucfirst($category) }}</a>
+                <a href="{{ url('/products') }}">Semua Produk</a>
+                   @foreach ($navCategories as $category)
+                <a href="{{ url('/products?category=' . $category) }}">{{ ucfirst($category) }}</a>
                     @endforeach
                 </div>
             </div>
 
             <!-- Main Navigation Links -->
-            <a href="/" class="mobile-nav-link">Home</a>
-            <a href="/tentang" class="mobile-nav-link">About Us</a>
-            <a href="/blog" class="mobile-nav-link">Blog</a>
-            <a href="/kontak" class="mobile-nav-link">Contact</a>
-            <a href="/promo" class="mobile-nav-link">Promo</a>
-            <a href="/intern" class="mobile-nav-link">Internship</a>
-            <a href="/admin/dashboard" class="mobile-nav-link">Admin</a>
+              <a href="{{ url('/') }}" class="mobile-nav-link">Home</a>
+              <a href="{{ url('/tentang') }}" class="mobile-nav-link">About Us</a>
+              <a href="{{ url('/blog') }}" class="mobile-nav-link">Blog</a>
+              <a href="{{ url('/kontak') }}" class="mobile-nav-link">Contact</a>
+              <a href="{{ url('/promo') }}" class="mobile-nav-link">Promo</a>
+              <a href="{{ url('/intern') }}" class="mobile-nav-link">Internship</a>
+              <a href="{{ url('/admin/dashboard') }}" class="mobile-nav-link">Admin</a>
         </div>
     </div>
 
@@ -76,30 +76,28 @@
             <a href="/"><img src="{{ asset('images/logo.png') }}" alt="Azzahra Computer Logo" class="logo-area"
                     style="margin-left:15px; margin-right:10px;" /></a>
             <x-nav-dropdown title="Kategori Produk">
-                <a href="/products">Semua Produk</a>
-                @foreach ($navCategories as $category)
-                    <a href="/products?category={{ $category }}">
-                        {{ ucfirst($category) }}
-                    </a>
-                @endforeach
+            <a href="{{ url('/products') }}">Semua Produk</a>
+               @foreach ($navCategories as $category)
+            <a href="{{ url('/products?category=' . $category) }}">
+              {{ ucfirst($category) }}
+            </a>
+               @endforeach
             </x-nav-dropdown>
         </div>
 
         <!-- Menu -->
         <nav class="menu">
-            <a href="/">Home</a>
-            <a href="/tentang">About Us</a>
-            <a href="/blog">Blog</a>
-            <a href="/kontak">Contact</a>
-            <a href="/promo">Promo</a>
-            <a href="/intern">Internship</a>
-            <a href="/admin/dashboard">Admin</a>
-
-            <!-- Desktop Search Icon -->
-            <button class="desktop-search-toggle" id="desktopSearchToggle">
-                <i class="bi bi-search"></i>
-            </button>
-        </nav>
+            <a href="{{ url('/') }}">Home</a>
+            <a href="{{ url('/tentang') }}">About Us</a>
+            <a href="{{ url('/blog') }}">Blog</a>
+            <a href="{{ url('/kontak') }}">Contact</a>
+            <a href="{{ url('/promo') }}">Promo</a>
+            <a href="{{ url('/intern') }}">Internship</a>
+            <a href="{{ url('/admin/dashboard') }}">Admin</a>
+          <button class="desktop-search-toggle" id="desktopSearchToggle">
+        <i class="bi bi-search"></i>
+    </button>
+</nav>
     </div>
 
     <!-- Desktop Search Bar (Dropdown) -->

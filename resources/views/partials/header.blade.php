@@ -20,16 +20,15 @@
 
 
         <!-- Menu -->
-        <nav class="menu">
-            <a href="/">Home</a>
-            <a href="/tentang">About Us</a>
-            <a href="/blog">Blog</a>
-            <a href="/kontak">Contact</a>
-            <a href="/promo">Promo</a>
-            <a href="/intern">Intership</a>
-            <a href="/login">Admin</a>
-        </nav>
-
+          <nav class="menu">
+            <a href="{{ url('/') }}">Home</a>
+            <a href="{{ url('/tentang') }}">About Us</a>
+            <a href="{{ url('/blog') }}">Blog</a>
+            <a href="{{ url('/kontak') }}">Contact</a>
+            <a href="{{ url('/promo') }}">Promo</a>
+            <a href="{{ url('/intern') }}">Intership</a>
+            <a href="{{ url('/login') }}">Admin</a>
+          </nav>
     </div>
 </div>
 

@@ -16,7 +16,7 @@
                 <div class="bg-white rounded-3 shadow-sm p-5 mb-5">
                     <header class="mb-5 pb-5 border-bottom">
                         <h1 class="display-5 fw-bold mb-4">{{ $blog->title }}</h1>
-                        <div class="d-flex flex-wrap gap-3 text-muted">
+                        <div class="d-flex flex-wrap gap-3 text-muted mb-4">
                             <span>
                                 <i class="bi bi-calendar3 me-2 text-primary"></i>
                                 {{ $blog->date->format('F d, Y') }}
@@ -26,6 +26,12 @@
                                 <span class="badge bg-primary">Blog Post</span>
                             </span>
                         </div>
+
+                        {{-- Foto Blog --}}
+                        @if($blog->image)
+                        <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}"
+                                class="img-fluid rounded-3 w-100" style="max-height: 450px; object-fit: cover;">
+                        @endif
                     </header>
 
                     <div class="prose-content lh-lg">

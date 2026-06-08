@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Blog extends Model
 {
-    protected $fillable = ['title', 'date', 'body'];
+    protected $fillable = ['title', 'date', 'body', 'image'];
 
     protected $casts = [
         'date' => 'date',
