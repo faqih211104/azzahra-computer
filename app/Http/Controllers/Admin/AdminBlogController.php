@@ -28,6 +28,7 @@ class AdminBlogController extends Controller
             'body' => 'required|string',
             'date' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'alt_text' => 'nullable|string|max:255',
         ]);
 
         if ($request->hasFile('image')) {
@@ -51,6 +52,7 @@ class AdminBlogController extends Controller
             'body' => 'required|string',
             'date' => 'nullable|date',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'alt_text' => 'nullable|string|max:255',
         ]);
 
         if ($request->hasFile('image')) {
