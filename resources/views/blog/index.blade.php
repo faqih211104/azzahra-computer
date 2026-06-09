@@ -23,22 +23,34 @@
             <div class="row g-4">
                 @forelse($blogs as $blog)
                     <a href="{{ route('blog.show', $blog) }}" class="col-md-6 col-lg-4 text-decoration-none">
-                        <div class="card h-100 shadow-sm border-0 hover-shadow transition">
-                            <div class="card-body d-flex flex-column">
-                                <div class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-calendar3 text-primary me-2"></i>
-                                    <small class="text-muted">{{ $blog->date->format('F d, Y') }}</small>
-                                </div>
-                                <h5 class="card-title fw-bold mb-3 text-dark">{{ $blog->title }}</h5>
-                                <p class="card-text text-muted flex-grow-1">
-                                    {!! str(strip_tags($blog->body_html))->limit(150) !!}
-                                </p>
-                                <div class="pt-3">
-                                    <span class="badge bg-primary-subtle text-primary rounded-pill">
-                                        <i class="bi bi-pencil-square me-1"></i>Blog
-                                    </span>
-                                </div>
+                    <div class="card h-100 shadow-sm border-0 hover-shadow transition">
+
+                      {{-- Foto Blog --}}
+                        @if($blog->image)
+                            <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}"
+                        class="card-img-top" style="height: 200px; object-fit: cover;">
+                        @else
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                        style="height: 200px;">
+                            <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
                             </div>
+                        @endif
+
+                            <div class="card-body d-flex flex-column">
+                            <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-calendar3 text-primary me-2"></i>
+                            <small class="text-muted">{{ $blog->date->format('F d, Y') }}</small>
+                            </div>
+                            <h5 class="card-title fw-bold mb-3 text-dark">{{ $blog->title }}</h5>
+                             <p class="card-text text-muted flex-grow-1">
+                              {!! str(strip_tags($blog->body_html))->limit(150) !!}
+                             </p>
+                            <div class="pt-3">
+                            <span class="badge bg-primary-subtle text-primary rounded-pill">
+                            <i class="bi bi-pencil-square me-1"></i>Blog
+                            </span>
+                            </div>
+                        </div>
                         </div>
                     </a>
                 @empty

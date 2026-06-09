@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminBlogController extends Controller
 {
@@ -26,7 +27,12 @@ class AdminBlogController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'date' => 'nullable|date',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('blogs', 'public');
+        }
 
         Blog::create($validated);
 
@@ -44,7 +50,16 @@ class AdminBlogController extends Controller
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'date' => 'nullable|date',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            // Hapus foto lama kalau ada
+            if ($blog->image) {
+                Storage::disk('public')->delete($blog->image);
+            }
+            $validated['image'] = $request->file('image')->store('blogs', 'public');
+        }
 
         $blog->update($validated);
 
@@ -53,8 +68,12 @@ class AdminBlogController extends Controller
 
     public function destroy(Blog $blog)
     {
+        // Hapus foto saat blog dihapus
+        if ($blog->image) {
+            Storage::disk('public')->delete($blog->image);
+        }
+
         $blog->delete();
 
         return redirect()->route('admin.blog.index')->with('success', 'Blog berhasil dihapus.');
-    }
-}
+    }}
