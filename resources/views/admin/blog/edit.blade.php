@@ -82,6 +82,20 @@
                                     <img id="preview-image" src="" alt="Preview"
                                         class="img-thumbnail" style="max-height: 200px;">
                                 </div>
+
+                                <!-- Alt Text -->
+                                <div class="mb-3">
+                                <label for="alt_text" class="form-label">
+                                 <i class="bi bi-textarea-t"></i> Alt Text Foto
+                                </label>
+                                <input type="text" class="form-control @error('alt_text') is-invalid @enderror"
+                                 id="alt_text" name="alt_text" value="{{ old('alt_text', $blog->alt_text) }}"
+                                 placeholder="Deskripsi singkat foto (opsional)">
+                                <small class="text-muted">Teks yang muncul di bawah foto dan untuk aksesibilitas.</small>
+                                @error('alt_text')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                 @enderror
+                                </div>
                             </div>
 
                             <!-- Body/Content -->

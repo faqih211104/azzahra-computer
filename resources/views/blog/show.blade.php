@@ -29,9 +29,16 @@
 
                         {{-- Foto Blog --}}
                         @if($blog->image)
-                        <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->title }}"
+                            <figure class="mb-0">
+                        <img src="{{ asset('storage/' . $blog->image) }}" alt="{{ $blog->alt_text ?? $blog->title }}"
                                 class="img-fluid rounded-3 w-100" style="max-height: 450px; object-fit: cover;">
+                        @if($blog->alt_text)
+                        <figcaption class="text-muted text-center mt-2 fst-italic">
+                        <i class="bi bi-image me-1"></i>{{ $blog->alt_text }}
+                        </figcaption>
                         @endif
+    </figure>
+@endif
                     </header>
 
                     <div class="prose-content lh-lg">
